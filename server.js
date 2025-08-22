@@ -105,6 +105,9 @@ app.post('/enroll', (req, res) => {
   const Id = studentById(studentId);
   const Code = courseByCode(courseCode);
   const course = courseByName(courseName);
+  const semester = courseBysemester(semester);
+  const reason = courseByreason(reason);
+  const enrollmentdate = enrollmentByDate(enrollmentDate);
   
   const newEnroll = {
     id: enrollmentIdCounter++,
@@ -133,7 +136,14 @@ app.post('/unenroll/:id', (req, res) => {
   // 1) Parse id from req.params
   // 2) Remove matching enrollment from array if found
   // 3) Redirect back to /enrollments (or show error)
-
+  console.log(req.params);
+  enrollments.forEach((enrollment,index))=>{
+    if(enrollment.id==req.params.id){
+      console.log("Unenrolled"+ req.params.id + "=="+enrollment.id);
+      enrollments.splice(index,1);
+    }
+  }
+  res.send();
   return res.status(501).send(page('Not Implemented', '<p class="muted">TODO: implement /unenroll/:id</p><p><a href="/enrollments">Back</a></p>'));
 });
 
