@@ -101,6 +101,19 @@ app.post('/enroll', (req, res) => {
   // 3) Create enrollment object; push; increment id
   // 4) Redirect to /enrollments on success; otherwise show error page with Back link
 
+  const course = courseByCode(studentName);
+  const course = courseByCode(studentId);
+  const course = courseByCode(courseCode);
+  const course = courseByCode(courseName);
+  const course = courseByCode(courseCode);
+  const newEnroll = {
+    id: enrollmentIdCounter++,
+    studentName, studentId, courseCode, courseName: course.name,
+    semester, reason, enrollmentDate: Date.now()
+  };
+  enrollments.push(newEnroll);
+  res.redirect('/enrollments');
+
   /* Example shape to build (DO NOT UNCOMMENT — for reference only)
   const course = courseByCode(courseCode);
   const newEnroll = {
